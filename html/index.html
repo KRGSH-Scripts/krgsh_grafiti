@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body { margin: 0; padding: 0; overflow: hidden; background: transparent; }
+        #progress-container {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 30px;
+            background: rgba(0,0,0,0.7);
+            border-radius: 15px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #ff6600);
+            border-radius: 15px;
+            transition: width 0.1s linear;
+        }
+        #progress-label {
+            position: absolute;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="progress-container">
+        <div id="progress-label"></div>
+        <div id="progress-bar"></div>
+    </div>
+    <div id="graffiti-container"></div>
+    <script>
+        window.addEventListener('message', function(event) {
+            const data = event.data;
+            if (data.action === 'progress') {
+                showProgress(data.duration, data.label);
+            }
+        });
+        
+        function showProgress(duration, label) {
+            const container = document.getElementById('progress-container');
+            const bar = document.getElementById('progress-bar');
+            const labelEl = document.getElementById('progress-label');
+            
+            container.style.display = 'flex';
+            bar.style.width = '0%';
+            labelEl.textContent = label;
+            
+            let start = Date.now();
+            const interval = setInterval(() => {
+                const elapsed = Date.now() - start;
+                const percent = Math.min(100, (elapsed / duration) * 100);
+                bar.style.width = percent + '%';
+                
+                if (percent >= 100) {
+                    clearInterval(interval);
+                    container.style.display = 'none';
+                }
+            }, 50);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+*.luac
+*.luac.out
+*.out
+.DS_Store
+.idea/
+.vscode/
+*.log
+.env

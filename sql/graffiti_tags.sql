@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS `graffiti_tags` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `x` FLOAT NOT NULL,
+  `y` FLOAT NOT NULL,
+  `z` FLOAT NOT NULL,
+  `heading` FLOAT DEFAULT 0.0,
+  `image_url` VARCHAR(255) NOT NULL,
+  `creator` VARCHAR(50),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
