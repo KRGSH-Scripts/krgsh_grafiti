@@ -13,22 +13,13 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Install Lua
-        uses: leafof/actions-lua@v4
-        with:
-          luaVersion: "5.4"
-      
-      - name: Install LuaRocks
-        run: |
-          wget https://luarocks.org/releases/luarocks-3.9.2.tar.gz
-          tar -xzf luarocks-3.9.2.tar.gz
-          cd luarocks-3.9.2
-          ./configure && make && sudo make install
-      
+        run: sudo apt-get install -y lua5.4 luarocks
+        
       - name: Install luacheck
-        run: sudo luarocks install luacheck)
-      
+        run: sudo luarocks install luacheck
+        
       - name: Install luaunit
         run: sudo luarocks install luaunit || true
         
-      - name: Syntax Check
-        run: make ci
+      - name: Check syntax
+        run: make test
