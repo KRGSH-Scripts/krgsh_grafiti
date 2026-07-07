@@ -2,10 +2,10 @@ fx_version 'cerulean'
 game 'gta5'
 
 name 'graffiti_tags'
-version '1.0.0'
-description 'Transparent PNG graffiti tags with range-based visibility'
+version '0.1.0-wip'
+description 'AI-Generated Graffiti Tags - Work in Progress'
 
-author 'opencode'
+author 'KRGSH-Scripts (AI-Slop)'
 
 lua54 'yes'
 
